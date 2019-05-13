@@ -350,6 +350,7 @@ NS_INLINE BOOL StringsMatchExceptLineBreaks(NSString *expected, NSString *actual
             }
 
             [collectionView scrollRectToVisible:initialPosition animated:YES];
+            CFRunLoopRunInMode(UIApplicationCurrentRunMode, 0.5, false);
         }
     }
     
