@@ -301,6 +301,7 @@ NS_INLINE BOOL StringsMatchExceptLineBreaks(NSString *expected, NSString *actual
             CFRunLoopRunInMode(UIApplicationCurrentRunMode, delay, false);
         } else if ([self isKindOfClass:[UICollectionView class]]) {
             UICollectionView *collectionView = (UICollectionView *)self;
+            CGRect initialPosition = CGRectMake(collectionView.contentOffset.x, collectionView.contentOffset.y, collectionView.frame.size.width, collectionView.frame.size.height);
             
             NSArray *indexPathsForVisibleItems = [collectionView indexPathsForVisibleItems];
             
@@ -347,6 +348,8 @@ NS_INLINE BOOL StringsMatchExceptLineBreaks(NSString *expected, NSString *actual
                     return [self accessibilityElementMatchingBlock:matchBlock];
                 }
             }
+
+            [collectionView scrollRectToVisible:initialPosition animated:YES];
         }
     }
     
